@@ -1,6 +1,7 @@
 package com.company;
 
 import java.util.Arrays;
+import java.util.Objects;
 
 public class Book {
     private String name;
@@ -45,6 +46,16 @@ public class Book {
         this.qty = qty;
     }
 
+
+
+    public String getAuthorNames() {
+        String names = "";
+        for(Author aut:author){
+            names += aut.getName() + ',';
+        }
+        return names.substring(0,names.length()-1);
+    }
+
     @Override
     public String toString() {
         return "Book[" +
@@ -55,12 +66,22 @@ public class Book {
                 ']';
     }
 
-    public String getAuthorNames() {
-        String names = "";
-        for(Author aut:author){
-            names += aut.getName() + ',';
-        }
-        return names.substring(0,names.length()-1);
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Book book = (Book) o;
+        return Double.compare(book.price, price) == 0 &&
+                qty == book.qty &&
+                Objects.equals(name, book.name) &&
+                Arrays.equals(author, book.author);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = Objects.hash(name, price, qty);
+        result = 31 * result + Arrays.hashCode(author);
+        return result;
     }
 
 }
