@@ -50,8 +50,9 @@ public class MyTriangle {
     }
 
     public String getType() {
-        if (v1.distance(v2)!=v2.distance(v3)) {
-            if (v2.distance()!=v3.distance(v1)&v1.distance(v2)!=v3.distance(v1)){
+        final double threshold = 0.00001;
+        if (Math.abs(v1.distance(v2)-v2.distance(v3)) > threshold) {
+            if (Math.abs(v2.distance()-v3.distance(v1)) > threshold & Math.abs(v1.distance(v2)-v3.distance(v1)) > threshold){
                 return TypeOfTriangle.SCALENE.getType();
             }
             else {
