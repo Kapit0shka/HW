@@ -1,4 +1,4 @@
-package horstmann1chapter.numberSystem;
+package horstmann1chapter.numbersystem;
 
 //ex 1.1
 public class NumberSystem {

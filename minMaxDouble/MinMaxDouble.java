@@ -1,4 +1,4 @@
-package horstmann1chapter.minMaxDouble;
+package horstmann1chapter.minmaxdouble;
 
 //ex. 1.4
 public class MinMaxDouble {

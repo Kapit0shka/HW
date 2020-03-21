@@ -1,4 +1,4 @@
-package horstmann1chapter.normalizationAngle;
+package horstmann1chapter.normalizationangle;
 
 // ex. 1.2
 public class NormalizationAngle {
