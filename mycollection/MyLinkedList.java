@@ -73,9 +73,12 @@ public class MyLinkedList<E> implements ILinkedList<E> {
 
     @Override
     public void clear() {
+        for (int i = 0; i < size - 1; i++) {
+            remove(0);
+        }
+        size = 0;
         head = null;
         tail = null;
-        size = 0;
     }
 
     @Override

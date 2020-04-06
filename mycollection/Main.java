@@ -68,5 +68,9 @@ public class Main {
         System.out.println("Linked.add: " + (System.nanoTime()-(start + tmpTime)));
 
 
+
+        lin.clear();
+        System.out.println(lin.toString());
+
     }
 }
