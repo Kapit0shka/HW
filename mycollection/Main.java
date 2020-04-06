@@ -43,5 +43,30 @@ public class Main {
             System.out.println(str);
         }
 
+
+        MyLinkedList<Integer > myLinInt = new MyLinkedList<>();
+
+        LinkedList<Integer> linInt = new LinkedList<>();
+
+        for (int i = 0; i<100000; i++) {
+            linInt.addLast(i);
+            myLinInt.addLast(i);
+        }
+
+
+
+        long start = System.nanoTime();
+
+        myLinInt.add(15000,12);
+        System.out.println("------------------------------");
+
+        long tmpTime = System.nanoTime() - start;
+        System.out.println("myLinked.add: " + tmpTime);
+        linInt.add(15000,12);
+
+
+        System.out.println("Linked.add: " + (System.nanoTime()-(start + tmpTime)));
+
+
     }
 }
