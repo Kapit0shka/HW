@@ -1,0 +1,14 @@
+I encouraged you to use interfaces instead of concrete data structures—for
+example, a Map instead of a TreeMap. Unfortunately, that advice goes only
+so far. Suppose you have a method parameter of type Map<String,
+Set<Integer>>, and someone calls your method with a HashMap<String,
+HashSet<Integer>>. What happens? What parameter type can you use instead?
+
+
+Map<String, Set<Integer>> map = new TreeMap<String, HashSet<Integer>>();
+Получим ошибку компиляции т.к. Set<Integer> и HashSet<Integer> не имют родственных связей
+
+Можно сделать следующим образом:
+Map<String, Set<Integer>> map = new TreeMap<String, Set<Integer>>();
+Map<String, LinkedHashSet<Integer>> map = new TreeMap<String, LinkedHashSet<Integer>>();
+
