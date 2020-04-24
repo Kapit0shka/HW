@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!--    <bean id="v8" name="v8" class="com.application.bean.V8" />-->
+    <bean id="diesel" name="engine" class="com.application.bean.Diesel" />
+<!--    <bean id="V8" name="V8" class="com.application.bean.V8"/>-->
+
+
+<!--    Autowire по имени бина
+        Spring container ищет бины в файле XML с тем же именем, с которым он определен в данном бине,
+        в нашем случае он будет искать бин с именем engine, и сопоставлять и связвать найденный с нашим бином
+        если бины не будут найдены то они не будут подключены и свосйтва будут == null-->
+    <bean id="ladaKalina" class="com.application.bean.Car"  autowire="byName">
+        <property name="vin" value="XTA490394-394-3"/>
+    </bean>
+
+
+<!--    Autowire по типу бина
+        Spring container будет работать по аналогии с byName, но бин будет искаться по типу
+        при чем бин с данным типом может быть только один, например в нашем случае
+        ищется бин с типом IEngine, бины с типом V8 и Diesel эмплементят IEngine
+        поэтому существовать модет только один из этих бинов-->
+    <bean id="kiaRio" class="com.application.bean.Car"  autowire="byType">
+        <!--<property name="engine" ref="v8"/> -->
+        <property name="vin" value="343545553"/>
+    </bean>
+
+
+<!--    Autowire конструктором
+        похож на byType, только пытается сопоставить и связать аргцмент конструктора
+        с одним из сооветсвующих бинов
+        -->
+    <bean id="cayene" class="com.application.bean.Car" autowire="constructor">
+        <constructor-arg value="engine"/>
+        <property name="vin" value="777777777777"/>
+    </bean>
+
+<!--    No
+        дефолтовый autowire
+        никакого автоматического сопоставления и связыания ссылки на bean должны
+        бфть определены с помощью ref
+        //используется по дефолту, но проставляется для большей ясности-->
+    <bean id="macan" class="com.application.bean.Car" autowire="no">
+        <property name="engine" ref="diesel"/>
+        <property name="vin" value="343545553"/>
+    </bean>
+
+    <!--Autowire не нужен, избыточное присвоение  -->
+    <bean id="niva" class="com.application.bean.Car" autowire="default">
+        <property name="engine" ref="diesel"/>
+        <property name="vin" value="3435466666"/>
+    </bean>
+
+
+</beans>
