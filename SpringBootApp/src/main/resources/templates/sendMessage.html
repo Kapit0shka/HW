@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Search user</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+
+<body>
+<h1>Send message</h1>
+<form action="#" th:action="@{/sendMessage}" th:object="${mailModel}" method="post">
+    <p>Email     <input type="text" th:field="*{mail}"/> </p>
+    <p>Subjects: <input type="text" th:field="*{subject}"/></p>
+    <p>Text:     <input type="text" th:field="*{text}"/></p>
+    <p><input type="submit" value="Send"/><input type="reset" value="Reset"/></p>
+</form>
+</body>
+</html>

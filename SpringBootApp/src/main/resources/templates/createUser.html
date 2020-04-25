@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Create User</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+
+<h1>Form create new user</h1>
+<form action="#" th:action="@{/createUser}" th:object="${user}" method="post">
+    <p>Surname:       <input type="text" th:field="*{surname}"/></p>
+    <p th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}">surname Error/>
+    <p>Name:          <input type="text" th:field="*{name}"/></p>
+    <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}">name Error/>
+    <p>Middle name:   <input type="text" th:field="*{middleName}"/></p>
+    <p th:if="${#fields.hasErrors('middleName')}" th:errors="*{middleName}">middleName Error/>
+    <p>Age:           <input type="text" th:field="*{age}"/></p>
+    <p th:if="${#fields.hasErrors('age')}" th:errors="*{age}">age Error/>
+    <p>Salary:        <input type="text" th:field="*{salary}"/></p>
+    <p th:if="${#fields.hasErrors('salary')}" th:errors="*{salary}">salary Error/>>
+    <p>Email:         <input type="text" th:field="*{email}"/></p>
+    <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}">email Error/>
+    <p>Place of work: <input type="text" th:field="*{placeOfWork}"/></p>
+    <p th:if="${#fields.hasErrors('placeOfWork')}" th:errors="*{placeOfWork}">placeOfWork Error/>
+    <p>Phone number:  <input type="text" th:field="*{phoneNumber}"/></p>
+    <p th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}">phoneNumber Error/>
+    <p><input type="submit" value="Submit"/><input type="reset" value="Reset"/></p>
+</form>
+<form action="#" th:action="@{/uploadFile}" method="post" enctype="multipart/form-data">
+    <p> File to upload: <input type="file" name="file" /> </p>
+    <p> <input type="submit" name="Upload" /> </p>
+</form>
+<a href="/searchUser">Search user</a>
+
+</body>
+</html>

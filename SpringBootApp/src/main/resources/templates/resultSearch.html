@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Result of search</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+
+<h1>info of user</h1>
+<p th:text="'surname: '       + ${searchUser.surname}"/>
+<p th:text="'name: '          + ${searchUser.name}"/>
+<p th:text="'Middle Name: '   + ${searchUser.MiddleName}"/>
+<p th:text="'Age: '           + ${searchUser.Age}"/>
+<p th:text="'salary: '        + ${searchUser.salary}"/>
+<p th:text="'email: '         + ${searchUser.email}"/>
+<p th:text="'place Of Work: ' + ${searchUser.placeOfWork}"/>
+<p th:text="'phone number: '  + ${searchUser.phoneNumber}"/>
+<p th:text="'user agent: '    + ${searchUser.userAgent}"/>
+<p th:text="'time: '          + ${searchUser.time}"/>
+<a href="/createUser">Create new user</a>
+<a href="/searchUser">Search user</a>
+<form action="#" th:action="@{/sendMessage}" method="get">
+    <input type="submit" value="Send message"/>
+</form>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Result of submission</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+
+<h1>info of add user</h1>
+<p th:text="'add user:'"/>
+<p th:text="'surname: '       + ${mailModel.mail}"/>
+<p th:text="'name: '          + ${mailModel.subject}"/>
+<p th:text="'Middle Name: '   + ${mailModel.text}"/>
+<a href="/createUser">Create new user</a>
+<a href="/searchUser">Search user</a>
+
+</body>
+</html>
