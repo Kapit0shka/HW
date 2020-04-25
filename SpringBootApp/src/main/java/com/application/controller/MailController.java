@@ -37,7 +37,7 @@ public class MailController {
                     @Override
                     protected PasswordAuthentication getPasswordAuthentication() {
                         return new PasswordAuthentication("lpgmy@yandex.ru",
-                                "8y6ENFA7pruKRWw");
+                                "************");
                     }
                 });
         Message message = new MimeMessage(session);
