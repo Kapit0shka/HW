@@ -1,31 +1,16 @@
-package com.application.controller;
+package com.application.service;
 
 import com.application.model.MailModel;
-import com.application.service.MailService;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
 
-@Controller
-public class MailController {
+import javax.mail.*;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+import java.util.Properties;
 
-    @GetMapping("/sendMessage")
-    public String creteFormSendMail(Model model) {
-        MailModel mailModel = new MailModel();
-        model.addAttribute("mailModel",mailModel);
-        return "sendMessage";
-    }
+public class MailService {
 
-    @PostMapping("/sendMessage")
-<<<<<<< HEAD
-    public String sendMessage(@ModelAttribute MailModel mailModel) {
-        return MailService.SendMessage(mailModel);
-=======
-    public String sendMessage(@ModelAttribute MailModel mailModel) throws MessagingException {
+    static public String  SendMessage(MailModel mailModel) {
         Properties properties = new Properties();
-
         properties.put("mail.smtp.host", "smtp.yandex.ru");
         properties.put("mail.smtp.auth", "true");
         properties.put("mail.smtp.socketFactory.port", "465");
@@ -36,7 +21,7 @@ public class MailController {
                     @Override
                     protected PasswordAuthentication getPasswordAuthentication() {
                         return new PasswordAuthentication("lpgmy@yandex.ru",
-                                "************");
+                                "8y6ENFA7pruKRWw");
                     }
                 });
         Message message = new MimeMessage(session);
@@ -51,10 +36,8 @@ public class MailController {
         }
         catch (MessagingException ex) {
             ex.printStackTrace();
+            return "404";
         }
-
         return "infoOfMessage";
->>>>>>> 308dd28f21e91803703c0b8dfcfc0a34cddc7275
     }
-
 }

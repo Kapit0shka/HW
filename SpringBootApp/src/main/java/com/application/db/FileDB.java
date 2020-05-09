@@ -1,9 +1,14 @@
 package com.application.db;
 
+import com.application.model.SearchUser;
 import com.application.model.User;
+import eu.bitwalker.useragentutils.UserAgent;
+import org.springframework.http.HttpRequest;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.*;
+import java.util.Date;
 import java.util.UUID;
 
 public class FileDB {
@@ -59,5 +64,38 @@ public class FileDB {
                 ex.printStackTrace();
             }
         }
+    }
+
+    public static String userSearch(SearchUser searchUser, HttpServletRequest request) throws IOException {
+
+        UserAgent userAgent = UserAgent.parseUserAgentString(request.getHeader("User-Agent"));
+
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader("db.txt"));
+
+            String line = reader.readLine();
+            do {
+                if (line.toLowerCase().contains((searchUser.getSurname() + " " + searchUser.getName()).toLowerCase())){
+                    String[] temp = line.split(" ");
+                    searchUser.setMiddleName(temp[2]);
+                    searchUser.setAge(Integer.parseInt(temp[3]));
+                    searchUser.setSalary(Integer.parseInt(temp[4]));
+                    searchUser.setEmail(temp[5]);
+                    searchUser.setPlaceOfWork(temp[6]);
+                    searchUser.setPhoneNumber(temp[7]);
+                    searchUser.setUserAgent(userAgent.toString());
+                    searchUser.setTime((new Date()).toString());
+                    return "resultSearch";
+                }
+                line = reader.readLine();
+            }
+            while (line != null);
+        }
+        catch (FileNotFoundException ex) {
+            ex.printStackTrace();
+            return "404";
+        }
+
+        return "nothingFound";
     }
 }

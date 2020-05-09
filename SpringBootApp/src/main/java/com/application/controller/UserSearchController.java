@@ -1,5 +1,6 @@
 package com.application.controller;
 
+import com.application.db.FileDB;
 import com.application.model.SearchUser;
 import eu.bitwalker.useragentutils.UserAgent;
 import org.springframework.stereotype.Controller;
@@ -25,38 +26,7 @@ public class UserSearchController {
     }
 
     @PostMapping("searchUser")
-    public String searchUserSubmit(@ModelAttribute SearchUser searchUser, HttpServletRequest request)throws IOException {
-
-        UserAgent userAgent = UserAgent.parseUserAgentString(request.getHeader("User-Agent"));
-
-        try {
-            BufferedReader reader = new BufferedReader(new FileReader("db.txt"));
-
-            String line = reader.readLine();
-            do {
-                if (line.toLowerCase().contains((searchUser.getSurname() + " " + searchUser.getName()).toLowerCase())){
-                    String[] temp = line.split(" ");
-                    searchUser.setMiddleName(temp[2]);
-                    searchUser.setAge(Integer.parseInt(temp[3]));
-                    searchUser.setSalary(Integer.parseInt(temp[4]));
-                    searchUser.setEmail(temp[5]);
-                    searchUser.setPlaceOfWork(temp[6]);
-                    searchUser.setPhoneNumber(temp[7]);
-                    searchUser.setUserAgent(userAgent.toString());
-                    searchUser.setTime((new Date()).toString());
-                    return "resultSearch";
-                }
-                line = reader.readLine();
-            }
-            while (line != null);
-        }
-        catch (FileNotFoundException ex) {
-            ex.printStackTrace();
-        }
-
-        return "nothingFound";
+    public String searchUserSubmit(@ModelAttribute SearchUser searchUser, HttpServletRequest request) throws IOException {
+        return FileDB.userSearch(searchUser,request);
     }
-
-
-
 }
